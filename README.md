@@ -1,7 +1,7 @@
 # 🧩 Sudoku Game
 
 ## 🔗 Live Website
-[Click here to play the game](https://yourusername.github.io/SudokuGame/)
+ https://vandrangineelima.github.io/Sudoku-game/
 
 ---
 
