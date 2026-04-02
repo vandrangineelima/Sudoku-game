@@ -1,0 +1,218 @@
+/* GENERAL PAGE STYLING */
+body {
+  font-family: Arial, sans-serif;
+  background: #69b2bb; /* pastel base */
+
+  /* Soft concentric rings / ripple effect */
+  background-image:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at center, rgba(173, 216, 230, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at center, rgba(255, 228, 225, 0.2) 0%, transparent 60%);
+  
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  height: 100vh;
+  margin: 0;
+}
+
+
+/* Animated gradient movement */
+@keyframes moveBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Optional subtle diagonal stripes overlay */
+body::before {
+  content: "";
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(118, 63, 63, 0.05),
+    rgba(255,255,255,0.05) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+/* HEADER */
+h1 {
+  color: #079a8b;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* SUDOKU GRID */
+#sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-gap: 0; /* remove gaps to make solid borders */
+  margin: 0 auto 20px auto; /* center grid */
+}
+
+#sudoku-grid input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc; /* thin border default */
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+/* HIGHLIGHT SELECTED CELL ON FOCUS */
+#sudoku-grid input:focus {
+  border: 2px solid #079a8b;
+}
+
+/* DISABLED CELLS (PRE-FILLED NUMBERS) */
+#sudoku-grid input:disabled {
+  background-color: #e0f7fa;
+  font-weight: bold;
+}
+
+/* BOLD LINES FOR 3x3 BOXES */
+/* Right border bold on every 3rd column */
+#sudoku-grid input:nth-child(3n) {
+  border-right: 3px solid #079a8b;
+}
+/* Bottom border bold on every 3rd row */
+#sudoku-grid input:nth-child(n+19):nth-child(-n+27),
+#sudoku-grid input:nth-child(n+46):nth-child(-n+54),
+#sudoku-grid input:nth-child(n+73):nth-child(-n+81) {
+  border-bottom: 3px solid #079a8b;
+}
+/* Top border for first row */
+#sudoku-grid input:nth-child(-n+9) {
+  border-top: 3px solid #079a8b;
+}
+/* Left border for first column */
+#sudoku-grid input:nth-child(9n+1) {
+  border-left: 3px solid #079a8b;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 10px;
+}
+
+.buttons button {
+  padding: 12px 20px;
+  margin: 5px;
+  background-color: #079a8b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.buttons button:hover {
+  background-color: #056d63;
+}
+
+/* MESSAGE */
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+select {
+  padding: 6px 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* ===== DARK MODE STYLES ===== */
+body.dark {
+  background: linear-gradient(-45deg, #121212, #1e1e1e, #2a2a2a, #121212);
+}
+
+body.dark .container {
+  background: rgba(40, 40, 40, 0.95);
+  color: white;
+  border: 2px solid #4dd0e1;
+  box-shadow: 0 0 20px rgba(77, 208, 225, 0.4);
+}
+
+
+body.dark h1 {
+  color: #4dd0e1;
+}
+
+body.dark #sudoku-grid input {
+  background: #2b2b2b;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark #sudoku-grid input:disabled {
+  background: #1f1f1f;
+  color: #4dd0e1;
+  font-weight: bold;
+}
+
+body.dark .buttons button {
+  background: #4dd0e1;
+  color: black;
+}
+
+body.dark .buttons button:hover {
+  background: #26c6da;
+}
+
+/* Toggle Button Style */
+#themeToggle {
+  float: right;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #079a8b;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Make bold 3x3 grid lines brighter in dark mode */
+body.dark #sudoku-grid input:nth-child(3n) {
+  border-right: 3px solid #4dd0e1;
+}
+
+body.dark #sudoku-grid input:nth-child(n+19):nth-child(-n+27),
+body.dark #sudoku-grid input:nth-child(n+46):nth-child(-n+54),
+body.dark #sudoku-grid input:nth-child(n+73):nth-child(-n+81) {
+  border-bottom: 3px solid #4dd0e1;
+}
+
+body.dark #sudoku-grid input:nth-child(-n+9) {
+  border-top: 3px solid #4dd0e1;
+}
+
+body.dark #sudoku-grid input:nth-child(9n+1) {
+  border-left: 3px solid #4dd0e1;
+}
